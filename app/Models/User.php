@@ -17,6 +17,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $table = 'users';
+
+    protected $primaryKey = 'userid';
+     
     protected $fillable = [
         'name',
         'email',
@@ -42,4 +47,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function posts(){
+        return $this->hasMany(gallery::class,'userid');
+    }
+
+    public function profile(){
+        return $this->belongsTo(profile::class,'userid');
+    }
+
 }

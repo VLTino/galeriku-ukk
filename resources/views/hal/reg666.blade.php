@@ -21,27 +21,35 @@
                                         <div class="form-outline form-white mb-4">
                                             <input type="text" id="name" class="form-control form-control-lg"
                                                 placeholder="Name" name="name" autofocus/>
-                                               
+                                                @error('name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                         </div>
 
                                         <div class="form-outline form-white mb-4">
                                             <input type="email" id="typeEmailX" class="form-control form-control-lg"
                                                 placeholder="Email" name="email" />
-                                               
+                                                @error('email')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                            
                                         </div>
 
                                         <div class="form-outline form-white mb-4">
                                             <input type="password" id="typePasswordX" class="form-control form-control-lg"
                                                 placeholder="Password" name="password" />
-                                               
+                                                @error('password')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             
                                         </div>
 
                                         <div class="form-outline form-white mb-4">
                                             <input type="password" id="confirmpassword" class="form-control form-control-lg"
                                                 placeholder="Confirm Password" name="confirm_password" />
-                                              
+                                                @error('confirm_password')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                           
                                         </div>
                                         

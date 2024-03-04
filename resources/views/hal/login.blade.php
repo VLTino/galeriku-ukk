@@ -3,7 +3,11 @@
 
 
 @section('content')
-
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <div class="container mt-5">
         <form action="/login" method="post">
             @csrf
@@ -18,16 +22,18 @@
 
                                         <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                         <p class="text-white-50 mb-5">Please enter your login and password!</p>
-                                       
+                                        @error('errorlogin')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         
                                         <div class="form-outline form-white mb-4">
-                                            <input type="email" id="typeEmailX" class="form-control form-control-lg"
+                                            <input type="email" id="typeEmailX" class="form-control form-control-lg  @error('email') is-invalid @enderror"
                                                 placeholder="Email" name="email" autofocus required/>
 
                                         </div>
 
                                         <div class="form-outline form-white mb-4">
-                                            <input type="password" id="typePasswordX" class="form-control form-control-lg"
+                                            <input type="password" id="typePasswordX" class="form-control form-control-lg  @error('password') is-invalid @enderror"
                                                 placeholder="Password" name="password" required/>
 
                                         </div>

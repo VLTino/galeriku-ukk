@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\GalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('hal.home');
+Route::get('/login',[LoginController::class,'index'])->middleware('guest')->name('login');
+
+Route::post('/login', [LoginController::class,'authenticate']);
+
+Route::get('/reg',[UsersController::class,'index']);
+
+Route::post('/reg',[UsersController::class,'store']);
+
+Route::get('/',[GalleryController::class,'home']);
+
+Route::middleware(['auth','UserAccess:user,admin'])->group(function () {
+    Route::get('/logout',[LoginController::class,'logout']);
 });
