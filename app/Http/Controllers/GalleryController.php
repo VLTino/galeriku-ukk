@@ -152,8 +152,25 @@ class GalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Find the gallery entry by ID
+        $gallery = Gallery::find($id);
+
+        if (!$gallery) {
+            return redirect()->route('galeriku')->with('error', 'Gambar tidak ditemukan');
+        }
+
+        // Delete the associated image file from storage
+        $imagePath = 'public/img/' . $gallery->gambar;
+        if (Storage::exists($imagePath)) {
+            Storage::delete($imagePath);
+        }
+
+        // Delete the gallery entry from the database
+        $gallery->delete();
+
+        return redirect()->route('galeriku')->with('success', 'Gambar berhasil dihapus');
     }
+
 }
