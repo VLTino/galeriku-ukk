@@ -16,7 +16,7 @@
         <form action="/upload" method="post" class="mt-5" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <input type="hidden" name="userid" value="">
+                <input type="hidden" name="userid" value="{{ Auth::user()->userid }}">
                 <input type="hidden" name="like_post" value="0">
                
                 <input type="file" name="gambar" id="" class="form-control" required>
