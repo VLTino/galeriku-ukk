@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoregalleryRequest;
 use App\Http\Requests\UpdateGalleryRequest;
+use App\Http\Requests\StoreCommentRequest;
+use App\Http\Requests\LikeRequest;
 use Illuminate\Http\Request;
 use App\Models\gallery;
+use App\Models\comment;
+use App\Models\like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -173,4 +177,41 @@ class GalleryController extends Controller
         return redirect()->route('galeriku')->with('success', 'Gambar berhasil dihapus');
     }
 
+    public function storeComment(StoreCommentRequest $request, Gallery $post)
+    {
+
+        Comment::create([
+            'id_photo' => $post->id_photo,
+            'comment' => $request->input('comment'),
+            'userid' => Auth::user()->userid
+        ]);
+
+        return redirect()->back()->with('success', 'Comment added successfully!');
+    }
+
+    public function likePhoto(LikeRequest $request)
+    {
+        $userId = $request->input('userid');
+        $photoId = $request->input('id_photo');
+
+
+        // Check if the user already liked the photo
+        $like = Like::where('userid', $userId)
+            ->where('id_photo', $photoId)
+            ->first();
+
+        if ($like) {
+            // User already liked, so unlike
+            $like->delete();
+            return redirect()->back();
+        } else {
+            // User didn't like, so like
+            Like::create([
+                'userid' => $userId,
+                'id_photo' => $photoId,
+            ]);
+
+            return redirect()->back();
+        }
+    }
 }

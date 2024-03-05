@@ -1,198 +1,244 @@
 body {
-    background-color: white;
-    
+  background-color: white;
+  
 }
 
 /* Default styles for gallery items */
 .gallery-item,
 .gallery-item2 {
-    width: 100%;
-    margin-bottom: 20px; /* Increased margin for better spacing */
+  width: 100%;
+  margin-bottom: 20px; /* Increased margin for better spacing */
 }
 
 .gallery-item {
-    columns: 4;
-    column-gap: 20px;
+  columns: 4;
+  column-gap: 20px;
 }
 
 .gallery-item2 {
-    columns: 6;
-    column-gap: 15px;
+  columns: 6;
+  column-gap: 15px;
 }
 
 .gambar {
-    width: 100%;
-    margin-bottom: 10px;
-    break-inside: avoid;
+  width: 100%;
+  margin-bottom: 10px;
+  break-inside: avoid;
 }
 
 .gambar img {
-    max-width: 100%;
-    border-radius: 15px;
+  max-width: 100%;
+  border-radius: 15px;
 }
 
 /* Media queries for responsiveness */
 @media screen and (max-width: 1200px) {
-    .gallery-item,
-    .gallery-item2 {
-        columns: 3;
-    }
+  .gallery-item,
+  .gallery-item2 {
+      columns: 3;
+  }
 }
 
 @media screen and (max-width: 900px) {
-    .gallery-item,
-    .gallery-item2 {
-        columns: 2;
-    }
+  .gallery-item,
+  .gallery-item2 {
+      columns: 2;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .gallery-item,
-    .gallery-item2 {
-        columns: 1;
-        column-gap: 0; /* No gap for single column */
-    }
+  .gallery-item,
+  .gallery-item2 {
+      columns: 1;
+      column-gap: 0; /* No gap for single column */
+  }
 }
 
 
 /* sidebar galeriku */
 
 .sidebar {
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: whitesmoke;
-    padding-top: 20px;
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: whitesmoke;
+  padding-top: 20px;
 }
 
 .sidebar a {
-    padding: 15px;
-    text-decoration: none;
-    font-size: 20px;
-    
-    display: block;
-    transition: 0.3s;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 20px;
+  
+  display: block;
+  transition: 0.3s;
 }
 
 .sidebar a:hover {
-    background-color: #e8e8e8;
+  background-color: #e8e8e8;
 }
 
 .sideactive {
-    background-color: #ff0000;
-    color: white;
+  background-color: #ff0000;
+  color: white;
 }
 
 .side {
-  color: black;
+color: black;
 }
 
 .content {
-    margin-left: 250px;
-    padding: 16px;
+  margin-left: 250px;
+  padding: 16px;
 }
 
 @media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
+.sidebar {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+.sidebar a {float: left;}
+div.content {margin-left: 0;}
 }
 
 @media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
-  }
+.sidebar a {
+  text-align: center;
+  float: none;
+}
 }
 /* navbar */
 
 .nav-link {
-    text-decoration: none;
-    background-color:#e8e8e8;
-    border-radius: 15px;
-    padding-left: 5px;
-    padding-right: 5px;
-    font: bold;
-    font-size: 20px
+  text-decoration: none;
+  background-color:#e8e8e8;
+  border-radius: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font: bold;
+  font-size: 20px
 }
 
 .nav-item {
-    margin-right: 10px
+  margin-right: 10px
 }
 
 .navbar-brand {
-    font-size: 30px;
+  font-size: 30px;
 }
 .signup{
-    background-color: red;
-    color: white;
+  background-color: red;
+  color: white;
 
 }
 .search {
-    background-color:#e8e8e8;
-    border-radius: 15px
+  background-color:#e8e8e8;
+  border-radius: 15px
 }
-  
 
-  .nav-link:hover {
-    background-color: whitesmoke
-  }
 
-  .img-detail {
-    width: 500px;
-  }
+.nav-link:hover {
+  background-color: whitesmoke
+}
 
-  /* img {
-    filter: drop-shadow(15px 5px 5px gray);
-  } */
-  
-  .btnheart:hover {
-    color: red; 
-  }
+.img-detail {
+  width: 500px;
+}
 
-  .btnheartactive {
-    background-color: red;
-    color: white;
-  }
+/* img {
+  filter: drop-shadow(15px 5px 5px gray);
+} */
 
-  .btnfav:hover {
-    color: yellow; 
-  }
+.btnheart:hover {
+  color: red; 
+}
 
-  .btnfavactive {
-    background-color: yellow;
-    color: white;
-  }
+.btnheartactive {
+  color: red;
+}
 
-  .btnshare:hover {
-    color: cyan; 
-  }
+.btnfav:hover {
+  color: yellow; 
+}
 
-  .btnshareactive {
-    background-color: cyan;
-    color: white;
-  }
+.btnfavactive {
+  background-color: yellow;
+  color: white;
+}
 
-  .comment-profil img {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+.btnshare:hover {
+  color: cyan; 
+}
 
-  footer {
-    margin-top: 20px;
-    background-color: white;
-    color: black;
-    text-align: center;
-    padding: 10px;
-    position: static;
-    bottom: 0;
+.btnshareactive {
+  background-color: cyan;
+  color: white;
+}
+
+.comment-profil img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+footer {
+  margin-top: 20px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  position: static;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Style for modal container */
+.modal {
+display: flex;
+align-items: center;
+justify-content: center;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background overlay */
+}
+.modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Style for modal content */
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px; /* Adjust the width as needed */
+}
+
+/* Style for close button */
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the right position as needed */
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
 }
