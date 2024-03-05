@@ -12,7 +12,6 @@ use App\Models\comment;
 use App\Models\like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
 
 class GalleryController extends Controller
 {
@@ -69,8 +68,8 @@ class GalleryController extends Controller
 
     public function likesshow()
     {
-        $likes = DB::table('likes')
-            ->join('galleries', 'likes.id_photo', '=', 'galleries.id_photo')
+        $likes = 
+            like::join('galleries', 'likes.id_photo', '=', 'galleries.id_photo')
             ->where('likes.userid', '=', Auth::user()->userid) 
             ->get();
 
