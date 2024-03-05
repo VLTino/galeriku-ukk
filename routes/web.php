@@ -39,4 +39,6 @@ Route::middleware(['auth','UserAccess:user,admin'])->group(function () {
     Route::post('/comments/{post}',[GalleryController::class,'storeComment']);
     Route::post('/like',[GalleryController::class,'likePhoto']);
     Route::get('/mylike',[GalleryController::class,'likesshow']);
+    Route::get('/profile/{id:userid}',[UsersController::class,'show']);
+    Route::post('/editprofile/{id:userid}',[UsersController::class,'editProfile']);
 });
