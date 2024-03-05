@@ -16,7 +16,13 @@ class GalleryController extends Controller
 
      public function home()
      {
-        $posts = gallery::all();
+        $query = request('query');
+
+        $posts = Gallery::when($query, function ($queryBuilder) use ($query) {
+            $queryBuilder->whereHas('user', function ($userQuery) use ($query) {
+                $userQuery->where('name', 'like', "%$query%");
+            })->orWhere('describe_photo', 'like', "%$query%");
+        })->get();
 
          return view('hal.home', [
              "title" => "Dashboard",
@@ -47,6 +53,13 @@ class GalleryController extends Controller
         ]);
     }
 
+    public function detail(gallery $post)
+    {
+        return view('hal.detail', [
+            "title" => "Detail",
+            "post" => $post,
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */

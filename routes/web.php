@@ -25,10 +25,12 @@ Route::get('/reg',[UsersController::class,'index']);
 Route::post('/reg',[UsersController::class,'store']);
 
 Route::get('/',[GalleryController::class,'home']);
+Route::get('/gallery/search',[GalleryController::class,'home']);
 
 Route::middleware(['auth','UserAccess:user,admin'])->group(function () {
     Route::get('/logout',[LoginController::class,'logout']);
     Route::get('/upload',[GalleryController::class,'upload']);
     Route::post('/upload',[GalleryController::class,'store']);
     Route::get('/galeriku',[GalleryController::class,'index'])->name('galeriku');
+    Route::get('/detail/{post:gambar}',[GalleryController::class,'detail']);
 });

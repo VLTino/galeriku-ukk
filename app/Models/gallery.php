@@ -24,5 +24,12 @@ class gallery extends Model
         return $this->belongsTo(User::class, 'userid');
     }
 
-    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'id_photo');
+    }
+
+    public function likes(){
+        return $this->hasMany(like::class,'id_photo');
+    }
 }

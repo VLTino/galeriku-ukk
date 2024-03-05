@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comment_log', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('comment_logs', function (Blueprint $table) {
+            $table->increments('id_comment');
+            $table->string('comment', 50);
+            $table->unsignedInteger('id_photo');
+            $table->unsignedInteger('userid');
+            $table->foreign('userid')->references('userid')->on('users')->onDelete('cascade');
+            $table->foreign('id_photo')->references('id_photo')->on('galleries')->onDelete('cascade');
         });
     }
 
