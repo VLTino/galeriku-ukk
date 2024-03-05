@@ -38,4 +38,5 @@ Route::middleware(['auth','UserAccess:user,admin'])->group(function () {
     Route::post('/delete/{id:id_photo}',[GalleryController::class,'destroy']);
     Route::post('/comments/{post}',[GalleryController::class,'storeComment']);
     Route::post('/like',[GalleryController::class,'likePhoto']);
+    Route::get('/mylike',[GalleryController::class,'likesshow']);
 });
