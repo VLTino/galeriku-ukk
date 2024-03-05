@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoregalleryRequest;
+use App\Http\Requests\UpdateGalleryRequest;
 use Illuminate\Http\Request;
 use App\Models\gallery;
 use Illuminate\Support\Facades\Auth;
@@ -107,17 +108,45 @@ class GalleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+
+    public function edit(gallery $post)
     {
-        //
+        return view('hal.editgambar', [
+            "title" => "Edit",
+            "post" => $post,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateGalleryRequest $request, $id)
     {
-        //
+        $gallery = Gallery::findOrFail($id);
+
+        // Update fields
+        $gallery->describe_photo = $request->input('describe_photo');
+        $gallery->userid = $request->input('userid');
+        $gallery->like_post = $request->input('like_post');
+
+        // Handling file upload
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            // Save updated image to storage
+            Storage::putFileAs('public/img', $image, $imageName);
+
+            // Delete old image from storage (optional)
+            Storage::delete('public/img/' . $gallery->gambar);
+
+            // Update image name in the database
+            $gallery->gambar = $imageName;
+        }
+
+        $gallery->save();
+
+        return redirect()->route('galeriku')->with('success', 'Gambar berhasil diperbarui');
     }
 
     /**

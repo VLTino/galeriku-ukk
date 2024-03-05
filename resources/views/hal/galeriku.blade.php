@@ -9,6 +9,11 @@
 
 @section('content')
 <div class="content mt-5">
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <h1>Galeriku</h1>
     @if ($posts->count() > 0)

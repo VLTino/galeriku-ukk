@@ -33,4 +33,6 @@ Route::middleware(['auth','UserAccess:user,admin'])->group(function () {
     Route::post('/upload',[GalleryController::class,'store']);
     Route::get('/galeriku',[GalleryController::class,'index'])->name('galeriku');
     Route::get('/detail/{post:gambar}',[GalleryController::class,'detail']);
+    Route::get('/edit/{post:gambar}',[GalleryController::class,'edit']);
+    Route::post('/edit/{id:id_photo}',[GalleryController::class,'update']);
 });
