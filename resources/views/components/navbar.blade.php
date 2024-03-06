@@ -33,7 +33,9 @@
                 <a href="/profile/{{ Auth::user()->userid }}" style="" class="nav-link">Profile</a>
               </li>
               <li class="nav-item">
-                <a href="/logout" style="" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                <form action="/logout" method="get" id="logout">
+                    <button type="button" style="" class="nav-link" onclick="Logout()"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+                </form>
               </li>
               @else
               <li class="nav-item">
@@ -47,3 +49,23 @@
         </div>
     </div>
 </nav>
+
+<script>
+    function Logout() {
+        // Menggunakan SweetAlert untuk menampilkan dialog konfirmasi
+        Swal.fire({
+            title: 'Apakah Anda yakin Untuk Logout?',
+            
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: "red",
+            confirmButtonText: 'Logout',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            // Jika pengguna menekan OK, kirim formulir untuk menghapus data
+            if (result.isConfirmed) {
+                document.getElementById("logout").submit();
+            }
+        });
+    }
+</script>
