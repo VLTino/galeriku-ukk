@@ -44,7 +44,7 @@ class UsersController extends Controller
         ]);
     }
 
-    public function editProfile(Request $request)
+    public function editProfile(StoreUsersRequest $request)
 {
     $user = Auth::user();
 
