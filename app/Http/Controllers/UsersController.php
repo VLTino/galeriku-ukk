@@ -44,13 +44,13 @@ class UsersController extends Controller
         ]);
     }
 
-    public function editProfile(Request $request, $profileid)
+    public function editProfile(Request $request)
 {
     $user = Auth::user();
 
-    // Validate the form data
+    
     $request->validate([
-        'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the validation rules as needed
+        'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
         'describe_profile' => 'nullable|string|max:50',
         'link_acc' => 'nullable|string',
     ]);
@@ -70,16 +70,16 @@ class UsersController extends Controller
         $user->profile->photo_profile = $fileName;
     }
 
-    // Update the user's describe_profile and link_acc fields
+    
     $user->name = $request->input('name');
     $user->profile->describe_profile = $request->input('describe_profile');
     $user->profile->link_acc = $request->input('link_acc');
 
-    // Save the changes
+    
     $user->save();
     $user->profile->save();
 
-    return redirect('/profile/' . Auth::user()->userid)->with('success', 'Profile updated successfully'); // Redirect to the desired page
+    return redirect('/profile/' . Auth::user()->userid)->with('success', 'Profile updated successfully'); // 
 }
 
     /**
