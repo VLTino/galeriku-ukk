@@ -21,7 +21,7 @@
             @endif
         </div>
         <div class="container d-flex justify-content-center align-items-center ">
-            <h1>{{ $user->user->name }}</h1>
+            <h3>{{ $user->user->name }}</h3>
         </div>
         <div class="container d-flex justify-content-center align-items-center">
             <a href="{{ $user->link_acc }}">{{ $user->link_acc }}</a>
