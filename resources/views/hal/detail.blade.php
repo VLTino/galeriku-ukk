@@ -18,8 +18,9 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="d-flex justify-content-center align-items-center">
-                    <!-- Like Button -->
-                    <!-- Like Button -->
+                    <p>{{ $post->like_post }} Likes</p>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
                     <form action="/like" method="post" class="d-inline">
                         @csrf
                         <input type="hidden" name="userid" value="{{ Auth::user()->userid }}">
@@ -145,10 +146,13 @@
 
             </div>
         </div>
+        @if ($post->comments->count() > 0)
+        <h3>{{ $post->comments->count() }} Comments</h3>
+        @endif
         @foreach ($post->comments as $comment)
             <div class="row d-flex align-items-center mt-3 comment-container">
                 <div class="col-lg-1 comment-profil">
-                    @if ($comment && $comment->user && $comment->user->profile && $comment->user->profile->photo_profile)
+                    @if ($comment->user->profile->photo_profile)
                         <img src="\storage\profile_photos\{{ $comment->user->profile->photo_profile }}" alt=""
                             class="img-detail img-fluid">
                     @else
