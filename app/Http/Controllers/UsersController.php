@@ -21,7 +21,7 @@ class UsersController extends Controller
         ]);
     }
 
-    public function show(string $id)
+    public function show()
     {
         $userID = Auth::user()->userid;
 
@@ -29,6 +29,16 @@ class UsersController extends Controller
         $user = profile::where('userid', $userID)->first();
 
         return view('hal.profile', [
+            "title" => "Profile",
+            "user" => $user,
+        ]);
+    }
+
+    public function showprofile($id)
+    {
+        $user = profile::where('userid', $id)->first();
+
+        return view('hal.userprofile', [
             "title" => "Profile",
             "user" => $user,
         ]);

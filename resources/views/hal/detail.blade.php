@@ -103,7 +103,8 @@
                     </div>
 
                     <div class="col-lg-12 d-flex justify-content-center">
-                        <h5>{{ $post->user->name }}</h5>
+                        <a href="/userprofile/{{ $post->user->userid }}" style="text-decoration: none;color:black"><h5>{{ $post->user->name }}</h5></a>
+
                     </div>
                 </div>
 
