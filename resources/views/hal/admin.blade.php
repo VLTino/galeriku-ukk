@@ -18,7 +18,7 @@
                 <div class="card text-white bg-primary">
                   <div class="card-body">
                     <h5 class="card-title">User</h5>
-                    <h3 style="text-align: center"><i class="fa fa-user" aria-hidden="true"></i> 50</h3>
+                    <h3 style="text-align: center"><i class="fa fa-user" aria-hidden="true"></i> {{ $usercount }}</h3>
                   </div>
                 </div>
               </div>
@@ -26,7 +26,7 @@
                 <div class="card text-white bg-warning">
                   <div class="card-body">
                     <h5 class="card-title">Admin</h5>
-                    <h3 style="text-align: center"><i class="fa-solid fa-user-tie"></i> 5</h3>
+                    <h3 style="text-align: center"><i class="fa-solid fa-user-tie"></i> {{ $admincount }}</h3>
                   </div>
                 </div>
               </div>
@@ -34,7 +34,7 @@
                 <div class="card text-white bg-dark">
                   <div class="card-body">
                     <h5 class="card-title">Image</h5>
-                    <h3 style="text-align: center"><i class="fa-solid fa-images"></i> 150</h3>
+                    <h3 style="text-align: center"><i class="fa-solid fa-images"></i> {{ $gambarall }}</h3>
                   </div>
                 </div>
               </div>
@@ -52,22 +52,15 @@
           purple: 'rgb(153, 102, 255)',
           grey: '#EBEFF6'
       };
-  
-      // Define default data
-      var defaultData = [
-          { date: '2024-01-01', count: 10 },
-          { date: '2024-01-02', count: 20 },
-          { date: '2024-01-03', count: 15 },
-          // Add more data as needed
-      ];
-  
-      var ctxBar = document.getElementById("bars");
-      var labels = defaultData.map(gambar => gambar.date);
-      var counts = defaultData.map(gambar => gambar.count);
-  
+    
+      var ctxBar = document.getElementById("bars")
+      var gambarcount = JSON.parse('{!! json_encode($gambarcount) !!}');
+      console.log(gambarcount)
+      var labels = gambarcount.map(gambar => gambar.date); 
+      var counts = gambarcount.map(gambar => gambar.count);
       var myBar = new Chart(ctxBar, {
-          type: 'bar',
-          data: {
+      type: 'bar',
+      data: {
               labels: labels,
               datasets: [{
                   label: 'Jumlah Upload Gambar',
@@ -77,23 +70,22 @@
                   categoryPercentage: 0.3
               }]
           },
-          options: {
-              responsive: true,
-              barRoundness: 1,
-              title: {
-                  display: false,
-                  text: "Chart.js - Bar Chart with Rounded Tops (drawRoundedTopRectangle Method)"
-              },
-              legend: {
-                  display: false
-              },
-              scales: {
-                  y: {
-                      max: 100
-                  }
-              }
-          }
+      options: {
+          responsive: true,
+          barRoundness: 1,
+          title: {
+          display: false,
+          text: "Chart.js - Bar Chart with Rounded Tops (drawRoundedTopRectangle Method)"
+          },
+          legend: {
+          display:false
+          },
+          scales: {
+                y: {
+                    max: 100
+                }
+            }
+      }
       });
-  </script>
-  
-@endsection
+    </script>
+@endsection 

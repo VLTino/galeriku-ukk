@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsersController;
@@ -43,4 +44,5 @@ Route::middleware(['auth','UserAccess:user,admin'])->group(function () {
     Route::post('/editprofile/{id:userid}',[UsersController::class,'editProfile']);
     Route::get('/userprofile/{id:userid}',[UsersController::class,'showprofile']);
     Route::post('/deletecomment/{idcomment:id_comment}',[GalleryController::class,'deletecomment']);
+    Route::get('/admin',[AdminController::class,'index']);
 });
