@@ -152,7 +152,12 @@ public function editLevel(Request $request, $userId)
         $user = User::find($userid);
 
         if (!$user) {
-            return redirect()->back()->with('error', 'User tidak ditemukan');
+            return redirect()->route('galeriku')->with('error', 'User tidak ditemukan');
+        }
+
+        $imagePath = 'public/profile_photos/' . $user->profile->photo_profile;
+        if (Storage::exists($imagePath)) {
+            Storage::delete($imagePath);
         }
 
         $user->delete();
