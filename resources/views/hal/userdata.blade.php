@@ -8,7 +8,7 @@
 @include('layouts.sidebar')
 
 @section('content')
-    <div class="content container mt-5">
+    <div class="content container">
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
