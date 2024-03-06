@@ -8,9 +8,9 @@
 @include('layouts.sidebar')
 
 @section('content')
-    <div class="content container mt-5">
+    <div class="content container">
 
-            <section class="p-5 mt-5 w-full">
+            <section class="p-5 w-full">
           <canvas id="bars"></canvas>
         </section>
             <div class="row">

@@ -8,7 +8,7 @@
 @include('layouts.sidebar')
 
 @section('content')
-    <div class="content container mt-5">
+    <div class="content container">
         <div class="header col-12">
             <h1>Upload</h1>
         </div>

@@ -8,7 +8,7 @@
 @include('layouts.sidebar')
 
 @section('content')
-<div class="content mt-5">
+<div class="content">
 
     <h1>Likes</h1>
     @if ($likes->count() > 0)
