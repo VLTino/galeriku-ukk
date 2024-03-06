@@ -52,7 +52,6 @@
 
 <script>
     function Logout() {
-        // Menggunakan SweetAlert untuk menampilkan dialog konfirmasi
         Swal.fire({
             title: 'Apakah Anda yakin Untuk Logout?',
             
@@ -62,7 +61,6 @@
             confirmButtonText: 'Logout',
             cancelButtonText: 'Batal'
         }).then((result) => {
-            // Jika pengguna menekan OK, kirim formulir untuk menghapus data
             if (result.isConfirmed) {
                 document.getElementById("logout").submit();
             }
