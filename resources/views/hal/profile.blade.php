@@ -61,6 +61,10 @@
                         label.innerHTML = fileName;
                     }
                 </script>
+                 @error('name')
+                 <div class="alert alert-danger">{{ $message }}</div>
+             @enderror
+             <input type="text" name="name" id="" value="{{ $user->user->name }}" class="form-control" placeholder="username">
                  @error('link_acc')
                  <div class="alert alert-danger">{{ $message }}</div>
              @enderror

@@ -71,10 +71,12 @@ class UsersController extends Controller
     }
 
     // Update the user's describe_profile and link_acc fields
+    $user->name = $request->input('name');
     $user->profile->describe_profile = $request->input('describe_profile');
     $user->profile->link_acc = $request->input('link_acc');
 
     // Save the changes
+    $user->save();
     $user->profile->save();
 
     return redirect('/profile/' . Auth::user()->userid)->with('success', 'Profile updated successfully'); // Redirect to the desired page
