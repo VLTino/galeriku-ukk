@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\gallery;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreUsersRequest;
 
 class AdminController extends Controller
 {
@@ -36,6 +37,13 @@ class AdminController extends Controller
         ]);
     }
 
+    public function regadmin()
+    {
+        return view('hal.registeradmin', [
+            "title" => "Register Admin",
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -47,9 +55,16 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUsersRequest $request)
     {
-        //
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->level = $request->input('level');
+        $user->save();
+        return redirect()->route('login')->with('success', 'User successfully registered. Please login.');
+
     }
 
     /**
