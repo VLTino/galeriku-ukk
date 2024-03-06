@@ -99,7 +99,7 @@ class GalleryController extends Controller
         // Handling file upload
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '_' . $image->getClientOriginalName();
 
             // Save image to storage
             Storage::putFileAs('public/img', $image, $imageName);
