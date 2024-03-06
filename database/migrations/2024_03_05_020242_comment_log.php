@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('comment_logs', function (Blueprint $table) {
             $table->increments('id_comment');
-            $table->string('comment', 50);
+            $table->string('comment', 200);
             $table->unsignedInteger('id_photo');
             $table->unsignedInteger('userid');
             $table->foreign('userid')->references('userid')->on('users')->onDelete('cascade');

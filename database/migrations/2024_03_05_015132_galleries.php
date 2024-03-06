@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->Increments('id_photo');
-            $table->string('describe_photo',50);
+            $table->string('describe_photo',200);
             $table->string('gambar');
             $table->timestamps();
             $table->string('like_post');
