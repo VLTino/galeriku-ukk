@@ -56,7 +56,7 @@
         Swal.fire({
             title: 'Apakah Anda yakin Untuk Logout?',
             
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: "red",
             confirmButtonText: 'Logout',
