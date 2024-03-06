@@ -69,13 +69,12 @@ class GalleryController extends Controller
     public function likesshow()
     {
         $likes =
-            like::join('galleries', 'likes.id_photo', '=', 'galleries.id_photo')
-                ->where('likes.userid', '=', Auth::user()->userid)
+            like::where('likes.userid', Auth::user()->userid)
                 ->get();
 
         return view('hal.likes', [
             "title" => "Dashboard",
-            "posts" => $likes,
+            "likes" => $likes,
         ]);
     }
 
