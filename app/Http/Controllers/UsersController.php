@@ -64,7 +64,7 @@ class UsersController extends Controller
 
         $file = $request->file('photo_profile');
         $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('profile_photos', $fileName, 'public'); // Adjust the storage path as needed
+        Storage::putFileAs('public/profile_photos', $file, $fileName);// Adjust the storage path as needed
 
         // Update the user's photo_profile field
         $user->profile->photo_profile = $fileName;
