@@ -82,6 +82,27 @@ class UsersController extends Controller
     return redirect('/profile/' . Auth::user()->userid)->with('success', 'Profile updated successfully'); // 
 }
 
+public function editLevel(Request $request, $userId)
+{
+    // Validate the request
+    $request->validate([
+        'level' => 'required|in:admin,user,banned',
+    ]);
+
+    // Update the user's level
+    $user = User::find($userId);
+
+    // Check if the user exists
+    if (!$user) {
+        abort(404, 'User not found');
+    }
+
+    $user->level = $request->input('level');
+    $user->save();
+
+    // Redirect back or to a specific route
+    return redirect()->back()->with('success', 'User level updated successfully');
+}
     /**
      * Show the form for creating a new resource.
      */
@@ -126,8 +147,15 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($userid)
     {
-        //
+        $user = User::find($userid);
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'User tidak ditemukan');
+        }
+
+        $user->delete();
+        return redirect()->back()->with('success', 'User has been deleted');
     }
 }

@@ -50,4 +50,7 @@ Route::middleware(['auth','UserAccess:admin'])->group(function () {
     Route::get('/admin',[AdminController::class,'index']);
     Route::get('/registeradmin',[AdminController::class,'regadmin']);
     Route::post('/regadmin',[AdminController::class,'store']);
+    Route::get('/userdata',[AdminController::class,'user']);
+    Route::post('/editlevel/{userid:userid}',[UsersController::class,'editlevel']);
+    Route::post('/deleteuser/{userid:userid}',[UsersController::class,'destroy']);
 });

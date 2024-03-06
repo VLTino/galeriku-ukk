@@ -67,9 +67,21 @@ class AdminController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
+    public function user()
+    {
+        $search = request('search');
+    
+        $users = User::when($search, function ($query) use ($search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })->get();
+    
+        return view('hal.userdata', [
+            "title" => "Userdata",
+            "users" => $users,
+            "search" => $search,
+        ]);
+    }
+    
     public function show(string $id)
     {
         //
