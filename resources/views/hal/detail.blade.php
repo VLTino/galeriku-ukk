@@ -6,6 +6,10 @@
             {{ session('success') }}
         </div>
     @endif
+
+    @error('comment')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="container d-flex justify-content-center align-items-center detail">
         <img src="\storage\img\{{ $post->gambar }}" alt="" class="img-detail img-fluid">
     </div>
@@ -22,14 +26,14 @@
                         <input type="hidden" name="id_photo" value="{{ $post->id_photo }}">
 
                         @if ($post->likes->where('userid', Auth::user()->userid)->count() > 0)
-                        <button type="submit" class="btn btnheartactive btn-lg mr-2">
+                            <button type="submit" class="btn btnheartactive btn-lg mr-2">
                                 <i class="fa-solid fa-heart"></i>
                             </button>
-                            @else
+                        @else
                             <button type="submit" class="btn btnheart btn-lg mr-2">
                                 <i class="fa-regular fa-heart"></i>
                             </button>
-                            @endif
+                        @endif
                     </form>
 
 
@@ -48,9 +52,11 @@
                             </button>
                         </form>
 
-                        <form id="deleteForm{{ $post->id_photo }}" action="/delete/{{ $post->id_photo }}" method="post" class="d-inline">
+                        <form id="deleteForm{{ $post->id_photo }}" action="/delete/{{ $post->id_photo }}" method="post"
+                            class="d-inline">
                             @csrf
-                            <button type="button" class="btn btnheart btn-lg mr-2" onclick="konfirmasiHapus({{ $post->id_photo }})">
+                            <button type="button" class="btn btnheart btn-lg mr-2"
+                                onclick="konfirmasiHapus({{ $post->id_photo }})">
                                 <i class="fa-regular fa-trash-can"></i>
                             </button>
                         </form>
@@ -62,9 +68,11 @@
                             </button>
                         </form>
 
-                        <form id="deleteForm{{ $post->id_photo }}" action="/delete/{{ $post->id_photo }}" method="post" class="d-inline">
+                        <form id="deleteForm{{ $post->id_photo }}" action="/delete/{{ $post->id_photo }}" method="post"
+                            class="d-inline">
                             @csrf
-                            <button type="button" class="btn btnheart btn-lg mr-2" onclick="konfirmasiHapus({{ $post->id_photo }})">
+                            <button type="button" class="btn btnheart btn-lg mr-2"
+                                onclick="konfirmasiHapus({{ $post->id_photo }})">
                                 <i class="fa-regular fa-trash-can"></i>
                             </button>
                         </form>
@@ -103,7 +111,9 @@
                     </div>
 
                     <div class="col-lg-12 d-flex justify-content-center">
-                        <a href="/userprofile/{{ $post->user->userid }}" style="text-decoration: none;color:black"><h5>{{ $post->user->name }}</h5></a>
+                        <a href="/userprofile/{{ $post->user->userid }}" style="text-decoration: none;color:black">
+                            <h5>{{ $post->user->name }}</h5>
+                        </a>
 
                     </div>
                 </div>
@@ -122,6 +132,7 @@
                     <!-- Add your comment input field and submit button here -->
                     <form action="/comments/{{ $post->id_photo }}" method="post">
                         @csrf
+
                         <div class="form-group">
                             <textarea name="comment" class="form-control" placeholder="Add a comment"></textarea>
                         </div>
@@ -135,10 +146,10 @@
             </div>
         </div>
         @foreach ($post->comments as $comment)
-            <div class="row d-flex align-items-center mt-3">
+            <div class="row d-flex align-items-center mt-3 comment-container">
                 <div class="col-lg-1 comment-profil">
                     @if ($comment && $comment->user && $comment->user->profile && $comment->user->profile->photo_profile)
-                        <img src="\storage\img\{{ $comment->user->profile->photo_profile }}" alt=""
+                        <img src="\storage\profile_photos\{{ $comment->user->profile->photo_profile }}" alt=""
                             class="img-detail img-fluid">
                     @else
                         <!-- Display a default image or message if $user is null -->
@@ -146,11 +157,54 @@
                     @endif
                 </div>
 
-                <div class="col-lg-10">
+                <div class="col-lg-9">
                     <h5>{{ $comment->user->name }}</h5>
                     <p>{{ $comment->comment }}</p>
                 </div>
+
+                <div class="col-lg-1">
+                    @if (Auth::user()->userid == $comment->user->userid)
+                        <form id="komendelete{{ $comment->id_comment }}"
+                            action="/deletecomment/{{ $comment->id_comment }}" method="post"
+                            class="d-inline delete-button">
+                            @csrf
+                            <button type="button" class="btn btnheart btn-lg mr-2"
+                                onclick="hapusKomen({{ $comment->id_comment }})">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </form>
+                    @elseif (Auth::user()->level == 'admin')
+                        <form id="komendelete{{ $comment->id_comment }}"
+                            action="/deletecomment/{{ $comment->id_comment }}" method="post"
+                            class="d-inline delete-button">
+                            @csrf
+                            <button type="button" class="btn btnheart btn-lg mr-2"
+                                onclick="hapusKomen({{ $comment->id_comment }})">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </form>
+                    @endif
+                </div>
             </div>
+
+            <script>
+                function hapusKomen($idcomment) {
+                    // Menggunakan SweetAlert untuk menampilkan dialog konfirmasi
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: 'Anda tidak dapat mengembalikan data yang dihapus!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        // Jika pengguna menekan OK, kirim formulir untuk menghapus data
+                        if (result.isConfirmed) {
+                            document.getElementById("komendelete" + $idcomment).submit();
+                        }
+                    });
+                }
+            </script>
         @endforeach
 
     </div>

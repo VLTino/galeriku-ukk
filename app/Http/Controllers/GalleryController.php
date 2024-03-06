@@ -19,8 +19,8 @@ class GalleryController extends Controller
      * Display a listing of the resource.
      */
 
-     public function home()
-     {
+    public function home()
+    {
         $query = request('query');
 
         $posts = Gallery::when($query, function ($queryBuilder) use ($query) {
@@ -29,22 +29,22 @@ class GalleryController extends Controller
             })->orWhere('describe_photo', 'like', "%$query%");
         })->get();
 
-         return view('hal.home', [
-             "title" => "Dashboard",
-             "posts" => $posts,
-         ]);
-     }
+        return view('hal.home', [
+            "title" => "Dashboard",
+            "posts" => $posts,
+        ]);
+    }
 
-     public function upload()
-     {
-         return view('hal.upload', [
-             "title" => "Upload"
-         ]);
-     }
+    public function upload()
+    {
+        return view('hal.upload', [
+            "title" => "Upload"
+        ]);
+    }
 
-     
 
-     public function index()
+
+    public function index()
     {
 
         $userID = Auth::user()->userid;
@@ -68,10 +68,10 @@ class GalleryController extends Controller
 
     public function likesshow()
     {
-        $likes = 
+        $likes =
             like::join('galleries', 'likes.id_photo', '=', 'galleries.id_photo')
-            ->where('likes.userid', '=', Auth::user()->userid) 
-            ->get();
+                ->where('likes.userid', '=', Auth::user()->userid)
+                ->get();
 
         return view('hal.likes', [
             "title" => "Dashboard",
@@ -200,7 +200,16 @@ class GalleryController extends Controller
             'userid' => Auth::user()->userid
         ]);
 
-        return redirect()->back()->with('success', 'Comment added successfully!');
+        return redirect()->back()->with('success', 'Komentar Terkirim!');
+    }
+
+    public function deletecomment($idcomment)
+    {
+        $comment = Comment::find($idcomment);
+
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Komentar Berhasi Dihapus');
     }
 
     public function likePhoto(LikeRequest $request)

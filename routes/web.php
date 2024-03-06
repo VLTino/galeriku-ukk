@@ -42,4 +42,5 @@ Route::middleware(['auth','UserAccess:user,admin'])->group(function () {
     Route::get('/profile/{id:userid}',[UsersController::class,'show']);
     Route::post('/editprofile/{id:userid}',[UsersController::class,'editProfile']);
     Route::get('/userprofile/{id:userid}',[UsersController::class,'showprofile']);
+    Route::post('/deletecomment/{idcomment:id_comment}',[GalleryController::class,'deletecomment']);
 });
