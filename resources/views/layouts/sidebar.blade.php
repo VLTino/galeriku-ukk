@@ -10,4 +10,19 @@
     <a href="/galeriku" class="side{{ request()->is('galeriku') ? 'active' : '' }}">Galeriku</a>
     <a href="/mylike" class="side{{ request()->is('mylike') ? 'active' : '' }}">Likes</a>
     <a href="/upload" class="side{{ request()->is('upload') ? 'active' : '' }}">Upload Gambar</a>
+    <span class="close-btn" onclick="closeSidebar()">&times;</span>
 </div>
+
+<button class="btn" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+
+<script>
+    function toggleSidebar() {
+        var sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('show-sidebar');
+    }
+    
+    function closeSidebar() {
+        var sidebar = document.querySelector('.sidebar');
+        sidebar.classList.remove('show-sidebar');
+    }
+</script>
