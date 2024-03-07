@@ -26,6 +26,10 @@ body {
   break-inside: avoid;
 }
 
+.gambar:hover {
+  opacity: 95%;
+}
+
 .gambar img {
   max-width: 100%;
   border-radius: 15px;
