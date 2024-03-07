@@ -7,18 +7,22 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center; 
         height: 100vh;
         margin: 0;
-        font-family: Arial, sans-serif;
     }
 
     h1 {
         margin: 0;
         font-size: 2.5em;
         color: #ff0000;
+        text-align: center; 
     }
 </style>
-<h1>Anda Telah Dibanned</h1>
+<div class="d-flex justify-content-center align-content-center">
+
+    <h1>Anda Telah Dibanned | <a href="/logout">Logout</a></h1>
+</div>
 @else
     <div class="container mb-5 mt-5">
 
