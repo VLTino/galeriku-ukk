@@ -62,12 +62,12 @@
                             </button>
                         </form>
                     @elseif (Auth::user()->level == 'admin')
-                        <form action="/edit/{{ $post->gambar }}" method="get" class="d-inline">
+                        {{-- <form action="/edit/{{ $post->gambar }}" method="get" class="d-inline">
                             @csrf
                             <button type="submit" class="btn btnfav btn-lg mr-2">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </button>
-                        </form>
+                        </form> --}}
 
                         <form id="deleteForm{{ $post->id_photo }}" action="/delete/{{ $post->id_photo }}" method="post"
                             class="d-inline">

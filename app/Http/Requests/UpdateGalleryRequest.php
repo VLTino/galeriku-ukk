@@ -22,7 +22,7 @@ class UpdategalleryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'describe_photo' => 'required|string|max:50',
+            'describe_photo' => 'required|string|max:200',
             'gambar' => 'image|mimes:jpeg,png,jpg',
             'userid' => 'required',
             'like_post' => 'required'
