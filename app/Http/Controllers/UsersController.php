@@ -44,7 +44,7 @@ class UsersController extends Controller
         ]);
     }
 
-    public function editProfile(StoreUsersRequest $request)
+    public function editProfile(Request $request)
 {
     $user = Auth::user();
 
@@ -53,6 +53,7 @@ class UsersController extends Controller
         'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
         'describe_profile' => 'nullable|string|max:50',
         'link_acc' => 'nullable|string',
+        'name' => 'required|string|unique:users,name,' . $user->userid . ',userid',
     ]);
 
     // Handle file upload

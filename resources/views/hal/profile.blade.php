@@ -69,7 +69,7 @@
                  <div class="alert alert-danger">{{ $message }}</div>
              @enderror
                 <input type="text" name="link_acc" id="" value="{{ $user->link_acc }}" class="form-control" placeholder="web link">
-                @error('describe_photo')
+                @error('describe_profile')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <textarea name="describe_profile" id="" cols="30" rows="10" class="form-control" placeholder="Deskripsi Profile">{{ $user->describe_profile }}</textarea>
