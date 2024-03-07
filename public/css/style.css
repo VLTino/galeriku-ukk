@@ -116,12 +116,7 @@ color: black;
   div.content {margin-left: 0;}
 }
 
-@media screen and (max-width: 400px) {
-.sidebar a {
-  text-align: center;
-  float: none;
-}
-}
+
 /* navbar */
 
 .nav-link {
