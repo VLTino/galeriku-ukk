@@ -27,7 +27,7 @@ body {
 }
 
 .gambar:hover {
-  opacity: 95%;
+  filter: brightness(95%);
 }
 
 .gambar img {
