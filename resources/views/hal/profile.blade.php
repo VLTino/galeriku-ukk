@@ -36,10 +36,10 @@
 
         <div class="container d-flex justify-content-center align-items-center detail">
             @if($user && $user->photo_profile)
-                <img src="\storage\profile_photos\{{ $user->photo_profile }}" alt="" class="img-detail img-fluid">
+                <img src="\storage\profile_photos\{{ $user->photo_profile }}" alt="" class="img-detail img-fluid" style="border-radius: 50%;width: 150px;height: 150px;">
             @else
                 <!-- Display a default image or message if $user is null -->
-                <img src="/default/pp.jpg" alt="Default Image" class="img-detail img-fluid">
+                <img src="/default/pp.jpg" alt="Default Image" class="img-detail img-fluid" style="border-radius: 50%;width: 150px;height: 150px;">
             @endif
         </div>
 
